@@ -71,7 +71,7 @@ func TestInstrument_tryToFindThePluginVersion(t *testing.T) {
 					"/home/user/skywalking-go/toolkit/trace/api.go",
 				},
 			},
-			NewTestInstrument("github.com/apache/skywalking-go/toolkit"),
+			NewTestInstrument("github.com/gaulzhw/skywalking-go-agent/toolkit"),
 			"",
 		},
 	}

@@ -18,9 +18,9 @@
 package metric
 
 import (
-	"github.com/apache/skywalking-go/toolkit/metric"
 	"github.com/gaulzhw/skywalking-go-agent/plugins/core/metrics"
 	"github.com/gaulzhw/skywalking-go-agent/plugins/core/operator"
+	"github.com/gaulzhw/skywalking-go-agent/toolkit/metric"
 )
 
 type NewCounterInterceptor struct{}

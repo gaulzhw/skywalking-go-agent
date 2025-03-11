@@ -39,7 +39,7 @@ func (i *Instrument) Name() string {
 }
 
 func (i *Instrument) BasePackage() string {
-	return "github.com/apache/skywalking-go/toolkit"
+	return "github.com/gaulzhw/skywalking-go-agent/toolkit"
 }
 
 func (i *Instrument) VersionChecker(version string) bool {

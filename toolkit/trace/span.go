@@ -15,33 +15,38 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package traceactivation
+package trace
 
-import (
-	"github.com/gaulzhw/skywalking-go-agent/plugins/core/operator"
-	"github.com/gaulzhw/skywalking-go-agent/plugins/core/tracing"
-	"github.com/gaulzhw/skywalking-go-agent/toolkit/trace"
+// EventType Defines the type of Span event
+type EventType string
+
+const (
+	// DebugEventType Indicates the event type is "debug"
+	DebugEventType EventType = "debug"
+
+	// InfoEventType Indicates the event type is "info"
+	InfoEventType EventType = "info"
+
+	// WarnEventType Indicates the event type is "warn"
+	WarnEventType EventType = "warn"
+
+	// ErrorEventType Indicates the event type is "error"
+	ErrorEventType EventType = "error"
 )
 
-type AsyncAddEventInterceptor struct {
+func (*SpanRef) PrepareAsync() {
 }
 
-func (h *AsyncAddEventInterceptor) BeforeInvoke(_ operator.Invocation) error {
-	return nil
+func (*SpanRef) AsyncFinish() {
 }
 
-func (h *AsyncAddEventInterceptor) AfterInvoke(invocation operator.Invocation, _ ...interface{}) error {
-	enhanced, ok := invocation.CallerInstance().(operator.EnhancedInstance)
-	if !ok {
-		return nil
-	}
-	s := enhanced.GetSkyWalkingDynamicField().(tracing.Span)
-	et := invocation.Args()[0].(trace.EventType)
-	event := invocation.Args()[1].(string)
-	if event == "" {
-		event = defaultEventMsg
-	}
-	s.Log(string(et), event)
-	enhanced.SetSkyWalkingDynamicField(s)
-	return nil
+// nolint
+func (*SpanRef) SetTag(key string, value string) {
+}
+
+func (*SpanRef) AddLog(...string) {
+}
+
+// AddEvent Add an event of the specified type to SpanRef.
+func (*SpanRef) AddEvent(et EventType, event string) {
 }

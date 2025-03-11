@@ -6,7 +6,7 @@
 // not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing,
 // software distributed under the License is distributed on an
@@ -15,30 +15,29 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package traceactivation
+package metric
 
-import (
-	"github.com/gaulzhw/skywalking-go-agent/plugins/core/operator"
-	"github.com/gaulzhw/skywalking-go-agent/plugins/core/tracing"
-	"github.com/gaulzhw/skywalking-go-agent/toolkit/trace"
-)
-
-type AddEventInterceptor struct {
+// NewCounter creates a new counter metrics.
+func NewCounter(name string, opt ...MeterOpt) *CounterRef {
+	return &CounterRef{}
 }
 
-func (h *AddEventInterceptor) BeforeInvoke(invocation operator.Invocation) error {
-	span := tracing.ActiveSpan()
-	if span != nil {
-		et := invocation.Args()[0].(trace.EventType)
-		event := invocation.Args()[1].(string)
-		if event == "" {
-			event = defaultEventMsg
-		}
-		span.Log(string(et), event)
-	}
-	return nil
+// NewGauge creates a new gauge metrics.
+func NewGauge(name string, getter func() float64, opts ...MeterOpt) *GaugeRef {
+	return &GaugeRef{}
 }
 
-func (h *AddEventInterceptor) AfterInvoke(_ operator.Invocation, _ ...interface{}) error {
+// NewHistogram creates a new histogram metrics.
+func NewHistogram(name string, steps []float64, opts ...MeterOpt) *HistogramRef {
+	return &HistogramRef{}
+}
+
+// MeterOpt Defines common options apply for Meter.
+// This is implemented in core/metrics package and converted in interceptors.
+type MeterOpt interface {
+}
+
+// WithLabels Add labels for metric
+func WithLabels(key, val string) MeterOpt {
 	return nil
 }

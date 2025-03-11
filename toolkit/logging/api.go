@@ -15,33 +15,23 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package traceactivation
+package logging
 
-import (
-	"github.com/gaulzhw/skywalking-go-agent/plugins/core/operator"
-	"github.com/gaulzhw/skywalking-go-agent/plugins/core/tracing"
-	"github.com/gaulzhw/skywalking-go-agent/toolkit/trace"
-)
+// Debug logs a message at DebugLevel
+func Debug(msg string, keyValues ...string) {
 
-type AsyncAddEventInterceptor struct {
 }
 
-func (h *AsyncAddEventInterceptor) BeforeInvoke(_ operator.Invocation) error {
-	return nil
+// Info logs a message at InfoLevel
+func Info(msg string, keyValues ...string) {
+
 }
 
-func (h *AsyncAddEventInterceptor) AfterInvoke(invocation operator.Invocation, _ ...interface{}) error {
-	enhanced, ok := invocation.CallerInstance().(operator.EnhancedInstance)
-	if !ok {
-		return nil
-	}
-	s := enhanced.GetSkyWalkingDynamicField().(tracing.Span)
-	et := invocation.Args()[0].(trace.EventType)
-	event := invocation.Args()[1].(string)
-	if event == "" {
-		event = defaultEventMsg
-	}
-	s.Log(string(et), event)
-	enhanced.SetSkyWalkingDynamicField(s)
-	return nil
+// Warn logs a message at DebugLevel
+func Warn(msg string, keyValues ...string) {
+
+}
+
+// Error logs a message at ErrorLevel
+func Error(msg string, keyValues ...string) {
 }

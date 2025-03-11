@@ -18,9 +18,9 @@
 package traceactivation
 
 import (
-	"github.com/apache/skywalking-go/toolkit/trace"
 	"github.com/gaulzhw/skywalking-go-agent/plugins/core/operator"
 	"github.com/gaulzhw/skywalking-go-agent/plugins/core/tracing"
+	"github.com/gaulzhw/skywalking-go-agent/toolkit/trace"
 )
 
 type CreateExitSpanInterceptor struct {

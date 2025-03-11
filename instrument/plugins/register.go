@@ -18,7 +18,7 @@
 package plugins
 
 import (
-	traceactivation "github.com/apache/skywalking-go/plugin/trace"
+	traceactivation "github.com/gaulzhw/skywalking-go-agent/plugins/toolkit-activation"
 	
 	"github.com/gaulzhw/skywalking-go-agent/plugins/amqp"
 	"github.com/gaulzhw/skywalking-go-agent/plugins/core/instrument"

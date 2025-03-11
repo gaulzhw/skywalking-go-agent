@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-REPODIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))/../../
+REPODIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 OUT_DIR = $(REPODIR)/bin
 VERSION_PATH = $(REPODIR)/VERSION
